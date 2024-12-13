@@ -225,7 +225,7 @@ jobs:
             - Default username: root
             - Default password: password
             - Default WIFI name: HiWiFi
-            - Default WIFI password: none
+            - Default WIFI password: he1235678
             ### Install to EMMC
             - Login to OpenWrt → System → Amlogic Service → Install OpenWrt
             ### OpenWrt Image Verification
