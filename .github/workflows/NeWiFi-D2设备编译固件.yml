@@ -3,7 +3,7 @@
 # Description: Build OpenWrt
 #============================================================================================
 
-name: 通用设备编译固件
+name: NeWiFi-D2设备编译固件
 
 on:
   repository_dispatch:
@@ -16,6 +16,7 @@ on:
         type: choice
         options:
           - openwrt-main
+          - openwrt-23.05
           - lede-master
           - immortalwrt-master
           - Lienol-master
@@ -85,9 +86,12 @@ jobs:
           # Set up compilation source code
           if [[ "${{ inputs.source_branch }}" == *"openwrt"* ]]; then
               REPO_URL="https://github.com/openwrt/openwrt"
+              REPO_BRANCH="main"
+                      TAGS_NAME="official"
+          elif [[ "${{ inputs.source_branch }}" == *"openwrt"* ]]; then
+              REPO_URL="https://github.com/openwrt/openwrt"
               REPO_BRANCH="openwrt-23.05"
-         
-                TAGS_NAME="official"
+                      TAGS_NAME="official"
           elif [[ "${{ inputs.source_branch }}" == *"lede"* ]]; then
               REPO_URL="https://github.com/coolsnowwolf/lede"
               REPO_BRANCH="master"
