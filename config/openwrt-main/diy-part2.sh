@@ -6,9 +6,9 @@
 # Source code repository: https://github.com/openwrt/openwrt / Branch: main
 #========================================================================================================================
 
-# ------------------------------- Main source started -------------------------------
+# ------------------------------- Main source started （主要来源开始）-------------------------------
 #
-# Add the default password for the 'root' user（Change the empty password to 'password'）
+# Add the default password for the 'root' user（Change the empty password to 'password'，将空密码更改为“password”）
 sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' package/base-files/files/etc/shadow
 
 # Set etc/openwrt_release
@@ -16,14 +16,14 @@ sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='R$(date +%Y.%m.%d)'|g" package
 echo "DISTRIB_SOURCECODE='official'" >>package/base-files/files/etc/openwrt_release
 
  Modify default IP（FROM 192.168.1.1 CHANGE TO 192.168.5.1）
- sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
+  sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
 #
-# ------------------------------- Main source ends -------------------------------
+# ------------------------------- Main source ends（主要来源结束） -------------------------------
 
-# ------------------------------- Other started -------------------------------
+# ------------------------------- Other started（其他开始） -------------------------------
 #
 # Add luci-app-amlogic
-svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+# svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
 
 # coolsnowwolf default software package replaced with Lienol related software package
 # rm -rf feeds/packages/utils/{containerd,libnetwork,runc,tini}
@@ -36,7 +36,7 @@ svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/
 # Add to compile options (Add related dependencies according to the requirements of the third-party software package Makefile)
 # sed -i "/DEFAULT_PACKAGES/ s/$/ pirania-app pirania ip6tables-mod-nat ipset shared-state-pirania uhttpd-mod-lua/" target/linux/armvirt/Makefile
 
-# Apply patch
+# Apply patch（应用修补程序）
 # git apply ../config/patches/{0001*,0002*}.patch --directory=feeds/luci
 #
 # ------------------------------- Other ends -------------------------------
