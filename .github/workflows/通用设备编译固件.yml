@@ -76,7 +76,7 @@ jobs:
           sudo chown ${USER}:${GROUPS} /workdir
           sudo timedatectl set-timezone "${TZ}"
           echo "status=success" >> ${GITHUB_OUTPUT}
-
+  # REPO_BRANCH="23.05"#main  
       - name: 克隆源代码(Clone source code) [ ${{ inputs.source_branch }} ]
         id: codes
         working-directory: /workdir
@@ -85,8 +85,9 @@ jobs:
           # Set up compilation source code
           if [[ "${{ inputs.source_branch }}" == *"openwrt"* ]]; then
               REPO_URL="https://github.com/openwrt/openwrt"
-              REPO_BRANCH="main"
-              TAGS_NAME="official"
+              REPO_BRANCH="23.05"
+         
+                TAGS_NAME="official"
           elif [[ "${{ inputs.source_branch }}" == *"lede"* ]]; then
               REPO_URL="https://github.com/coolsnowwolf/lede"
               REPO_BRANCH="master"
