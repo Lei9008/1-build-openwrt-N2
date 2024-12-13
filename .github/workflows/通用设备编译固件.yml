@@ -59,7 +59,7 @@ jobs:
           sudo timedatectl set-timezone "${TZ}"
           echo "status=success" >> ${GITHUB_OUTPUT}
 
-      - name: Clone source code [ ${{ inputs.source_branch }} ]
+      - name: 克隆源代码(Clone source code) [ ${{ inputs.source_branch }} ]
         id: codes
         working-directory: /workdir
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
@@ -109,13 +109,20 @@ jobs:
       - name: 安装源 (Install feeds)
         run: cd openwrt/ && ./scripts/feeds install -a
 
-      - name: Load custom configuration
+      - name: 加载自定义配置(Load custom configuration)
         run: |
           [[ -d "files" ]] && mv -f files openwrt/files
           [[ -e "${CONFIG_FILE}" ]] && cp -f ${CONFIG_FILE} openwrt/.config
           chmod +x ${DIY_P2_SH}
           cd openwrt/
           ${GITHUB_WORKSPACE}/${DIY_P2_SH}
+
+      - name: SSH连接到Actions
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+        env:
+         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
       - name: 下载软件包(Download package)
         id: package
@@ -126,7 +133,7 @@ jobs:
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
 
-      - name: Compile the OpenWrt
+      - name: 编译OpenWrt(Compile the OpenWrt)
         id: compile
         run: |
           cd openwrt/
@@ -162,7 +169,7 @@ jobs:
           name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
           path: ${{ env.FIRMWARE }}
 
-      - name: Generate release tag
+      - name: 生成发布标签(Generate release tag)
         id: tag
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         run: |
@@ -172,7 +179,7 @@ jobs:
           [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
           echo "::set-output name=status::success"
 
-      - name: Upload firmware to release
+      - name: 创建发布版本(Upload firmware to release)
         uses: softprops/action-gh-release@v1
         if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
