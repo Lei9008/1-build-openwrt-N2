@@ -15,3 +15,9 @@ src-git telephony https://github.com/coolsnowwolf/telephony.git
 #src-git small https://github.com/kenzok8/small
 #src-git smpackage https://github.com/kenzok8/small-package
 #src-git MrH723 https://github.com/MrH723/openwrt-packages
+src-git lienol https://github.com/Lienol/openwrt-package
+src-git wifidog https://github.com/wifidog/wifidog-gateway.git
+src-git kenzo https://github.com/kenzok8/openwrt-packages
+src-git passwall https://github.com/xiaorouji/openwrt-passwall
+# 添加 OpenAppFilter 应用过滤插件
+git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
