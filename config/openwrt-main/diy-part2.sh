@@ -26,7 +26,7 @@ sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7
 
 
 #修改主机名
-sed -i "s/hostname='OpenWrt'/hostname='NeWiFi-D2'/g" package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname='NeWiFi'/g" package/base-files/files/bin/config_generate
 
 
 
