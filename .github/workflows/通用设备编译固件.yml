@@ -159,6 +159,16 @@ jobs:
           df -hT ${PWD}
           echo "status=success" >> ${GITHUB_OUTPUT}
 
+      - name: 提速 (Accelerate)
+        if: env.CACHE_ACCELERATE == 'true'
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: false
+          toolchain: true
+          skip: true
+          clean: true
+          prefix: ${{ github.workspace }}/openwrt
+
       - name: 加载自定义源(Load custom feeds)
         run: |
           [[ -f "${FEEDS_CONF}" ]] && cp -f ${FEEDS_CONF} openwrt/feeds.conf.default
