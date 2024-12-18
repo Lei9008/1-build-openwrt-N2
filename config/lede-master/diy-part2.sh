@@ -37,7 +37,7 @@ cp -rf $GITHUB_WORKSPACE/backup/newifi3/files/etc/hotplug.d/block/30-usbmount fi
 chmod 755 files/etc/hotplug.d/block/30-usbmount
 
 #修改主机名
-sed -i "s/hostname='OpenWrt'/hostname='NeWiFi-D2'/g" package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname='NeWiFi'/g" package/base-files/files/bin/config_generate
 
 
 ##########固件主题添加&修改#########
