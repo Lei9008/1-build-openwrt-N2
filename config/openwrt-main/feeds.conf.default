@@ -8,7 +8,7 @@ src-git wifidog https://github.com/wifidog/wifidog-gateway.git
 src-git kenzo https://github.com/kenzok8/openwrt-packages
 src-git passwall https://github.com/xiaorouji/openwrt-passwall
 # 添加 OpenAppFilter 应用过滤插件
-git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+src-git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 
 
 #src-git routing https://git.openwrt.org/feed/routing.git
