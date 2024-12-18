@@ -3,7 +3,7 @@
 # Description: Build OpenWrt
 #============================================================================================
 
-name: Openwrt_NeWiFi_D2_编译固件
+name: NeWiFi_D2_编译固件
 
 on:
   repository_dispatch:
